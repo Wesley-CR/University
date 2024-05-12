@@ -176,3 +176,19 @@ def difSim(A,B):
 print(difSim([1,2,3],[3,4,5]))
 print(difSim([1,2,3],[2,3,1]))
 
+testTetris = [[1,1,1,1],
+              [1,0,0,0],
+              [0,0,0,0],
+              [0,0,0,0]]
+
+tt2 = transposeM(testTetris)
+tt3 = transposeM(tt2)
+printM(tt2)
+printM(tt3)
+
+
+
+
+
+
+

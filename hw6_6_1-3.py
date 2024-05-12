@@ -238,7 +238,17 @@ def mat_exp(M,n):
     if n%2: r = mat_Mult(r,M)
     return r
 
+def tribonacci(n):
+    A = [[0,1,0],
+         [0,0,1],
+         [1,1,1]]
+
+    B = [[1],
+         [1],
+         [1]]
+    return mat_Mult(mat_exp(A,n),B)
 # LISTS
+
 #1. Last n's in list
 def last_n_in_list(M,n):
     res = []
