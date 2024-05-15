@@ -78,16 +78,16 @@ pre_order(testTree)
 print("============================================")
 # From now on im going to assume the trees are binary trees :D
 bnTree = [5, [6, [3, [], []], []], [3, [], [7, [9, [], []], []]]]
-#In order
+
 def in_order(T):
-    if T == []: return
-    if len(T) == 3:
-        v, L, R = T
-        in_order(L)
-        print(v)
-        in_order(R)
-    else:
-        print(T[0])
+    if T == []:
+        return
+    v, L, R = T
+    in_order(L)
+    print(v)
+    in_order(R)
+
+in_order(bnTree)
 
 in_order(bnTree)
 
@@ -95,14 +95,66 @@ print("============================================")
 #Post order
 def post_order(T):
     if T == []: return
-    if len(T) == 3:
-        v, L, R = T
-        post_order(L)
-        post_order(R)
-        print(v)
-    else:
-        print(T[0])
+    v, L, R = T
+    post_order(L)
+    post_order(R)
+    print(v)
 
 post_order(bnTree)
 
 print("============================================")
+#TODO Inverse orders
+
+#Levels
+# All levels in which a number n appears
+def levels_of_n(T,n):
+    if T == []: return []
+    levels = []
+    stack = [(T,0)]
+    while stack:
+        tree, level = stack.pop()
+        v, L, R = tree
+        if v == n:
+            levels.append(level)
+        if L:
+            stack.append((L,level+1))
+        if R:
+            stack.append((R,level+1))
+    return levels
+        
+print(levels_of_n(bnTree,3))
+
+# All nodes in a level
+def nodes_in_a_level(T,level):
+    if T == []: return []
+    nodes = []
+    stack = [(T,0)]
+    while stack:
+        tree, l = stack.pop()
+        v, L, R = tree
+        if l == level:
+            nodes.append(v)
+        if L:
+            stack.append((L,l+1))
+        if R:
+            stack.append((R,l+1))
+    return nodes
+
+print(nodes_in_a_level(bnTree,2))
+
+# Advanced
+# is balanced
+def binary_tree_height(T):
+    if T == []: return 0
+    v, L, R = T
+    return max(binary_tree_height(L),binary_tree_height(R)) + 1
+
+def is_balanced(T):
+    if T == []: return True
+    v, L, R = T
+    if abs(binary_tree_height(L)-binary_tree_height(R)) > 1:
+        return False
+    return is_balanced(L) and is_balanced(R)
+
+print(is_balanced(bnTree))
+
