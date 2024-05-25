@@ -133,7 +133,7 @@ def post_order(T):
 
 print(post_order(bnTree))
 print("============================================")
-#TODO Inverse orders
+# Inverse orders
 # Pre-order
 print("Inverse Pre-order")
 def inverse_pre_order(T):
